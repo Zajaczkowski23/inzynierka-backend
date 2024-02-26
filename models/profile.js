@@ -14,6 +14,14 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
+  favoriteTeams: [{
+    type: String,
+    unique: true
+  }],
+  favoriteLeagues: [{
+    type: String,
+    unique: true
+  }],
 }, {
   timestamps: true
 })
