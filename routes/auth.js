@@ -123,4 +123,18 @@ router.delete('/favoriteLeagues', async (req, res) => {
   }
 })
 
+// Example Express.js route
+router.post('/match/winner', (req, res) => {
+  const { matchId, selectedWinner } = req.body;
+  // Assuming you have a Match model for your MongoDB collection
+  Match.findOneAndUpdate({ matchId: matchId }, { $set: { winner: selectedWinner } }, { new: true })
+    .then(updatedMatch => {
+      res.json(updatedMatch);
+    })
+    .catch(error => {
+      res.status(500).json({ message: 'Error updating match winner', error });
+    });
+});
+
+
 module.exports = router;
